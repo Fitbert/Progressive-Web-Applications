@@ -24,19 +24,19 @@ warmStrategyCache({
   strategy: pageCache,
 });
 
-registerRoute(({ request }) => request.mode === 'navigate', pageCache);
+registerRoute(
+  ({ request }) =>  ['style', 'script', 'worker'].includes(request.destination),
 
 // TODO: Implement asset caching
-
-const assetCache = new CacheFirst({
+new StaleWhileRevalidate({
+  // Name of the cache storage.
   cacheName: 'asset-cache',
   plugins: [
+    // This plugin will cache responses with these headers to a maximum-age of 30 days
     new CacheableResponsePlugin({
       statuses: [0, 200],
     }),
-    new ExpirationPlugin({
-      maxAgeSeconds: 30 * 24 * 60 * 60,
-    }),
   ],
-});
+})
+);
 registerRoute();
