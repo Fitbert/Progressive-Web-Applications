@@ -27,7 +27,7 @@ warmStrategyCache({
 registerRoute(
   ({ request }) =>  ['style', 'script', 'worker'].includes(request.destination),
 
-// TODO: Implement asset caching
+// Implement asset caching
 new StaleWhileRevalidate({
   // Name of the cache storage.
   cacheName: 'asset-cache',
