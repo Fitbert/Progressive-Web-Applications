@@ -11,23 +11,34 @@ const loadSpinner = () => {
   spinner.classList.add('spinner');
   spinner.innerHTML = `
   <div class="loading-container">
-  <div class="loading-spinner" />
+    <div class="loading-spinner"></div>
   </div>
   `;
   main.appendChild(spinner);
 };
 
-const editor = new Editor();
+const initializeEditor = () => {
+  try {
+    const editor = new Editor();
+    if (typeof editor === 'undefined') {
+      throw new Error('Editor is undefined');
+    }
+  } catch (error) {
+    console.error('Error initializing the editor:', error);
+    loadSpinner();
+  }
+};
 
-if (typeof editor === 'undefined') {
-  loadSpinner();
-}
+initializeEditor();
 
 // Check if service workers are supported
 if ('serviceWorker' in navigator) {
-  // register workbox service worker
-  const workboxSW = new Workbox('/src-sw.js');
-  workboxSW.register();
+  const wb = new Workbox('/src-sw.js');
+  wb.register().then((registration) => {
+    console.log('Service Worker registered with scope:', registration.scope);
+  }).catch((error) => {
+    console.error('Service Worker registration failed:', error);
+  });
 } else {
   console.error('Service workers are not supported in this browser.');
 }

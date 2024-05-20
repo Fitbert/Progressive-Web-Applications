@@ -1,6 +1,7 @@
 import { openDB } from 'idb';
 
-const initdb = async () =>
+// Initialize the database
+const initdb = async () => 
   openDB('jate', 1, {
     upgrade(db) {
       if (db.objectStoreNames.contains('jate')) {
@@ -12,76 +13,28 @@ const initdb = async () =>
     },
   });
 
-// logic to a method that accepts some content and adds it to the database
-// Export a function we will use to POST to the database.
-export const postDb = async (content)  => {
-  console.log('Update to the database');
-
-  // Create a connection to the database database and version we want to use.
-  const contactDb = await openDB('jate', 1);
-
-  // Create a new transaction and specify the database and data privileges.
-  const tx = contactDb.transaction('jate', 'readwrite');
-
-  // Open up the desired object store.
-  const store = tx.objectStore('jate');
-
-  // Use the .add() method on the store and pass in the content.
-  const request = store.add({ id: 1, value:content });
-
-  // Get confirmation of the request.
-  const result = await request;
-  console.log('Data saved to the database', result);
-};
-;
-
-// Export a function we will use to GET to the database.
+// Export a function to GET from the database.
 export const getDb = async () => {
   console.log('GET from the database');
-
-  // Create a connection to the database database and version we want to use.
-  const contactDb = await openDB('jate', 1);
-
-  // Create a new transaction and specify the database and data privileges.
-  const tx = contactDb.transaction('jate', 'readonly');
-
-  // Open up the desired object store.
+  const textDb = await openDB('jate', 1);
+  const tx = textDb.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
-
-  // Use the .getAll() method to get all data in the database.
-  const request = store.getAll();
-
-  // Get confirmation of the request.
-  const result = await request;
-  console.log('result.value', result);
-  return result;
-};
-
-
-// Export a function we will use to DELETE to the database.
-export const deleteDb = async (id) => {
-  console.log('DELETE from the database', id);
-
-  // Create a connection to the database database and version we want to use.
-  const contactDb = await openDB('contact', 1);
-
-  // Create a new transaction and specify the database and data privileges.
-  const tx = contactDb.transaction('contact', 'readwrite');
-
-  // Open up the desired object store.
-  const store = tx.objectStore('contact');
-
-  // Use the .delete() method to get all data in the database.
-  const request = store.delete(id);
-
-  // Get confirmation of the request.
+  const request = store.get(1); // Get the specific record with id 1
   const result = await request;
   console.log('result.value', result);
   return result?.value;
 };
 
+// Export a function to PUT (update) data in the database.
+export const putDb = async (content) => {
+  console.log('Update the database');
+  const textDb = await openDB('jate', 1);
+  const tx = textDb.transaction('jate', 'readwrite');
+  const store = tx.objectStore('jate');
+  const request = store.put({ id: 1, value: content });
+  const result = await request;
+  console.log('Data updated in the database', result);
+};
+
 // Start the database.
 initdb();
-
-
-  // TODO: Add logic for a method that gets all the content from the database
