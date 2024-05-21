@@ -1,8 +1,11 @@
+//import
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
+
+//plugin for service worker
 module.exports = () => {
   return {
     mode: 'development',
@@ -19,16 +22,18 @@ module.exports = () => {
         template: './index.html',
         title: 'Contact Cards'
       }),
+      //custom service worker
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
+      //manifest.json
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
         name: 'Contact Cards',
         short_name: 'Contact',
-        description: 'Never forget your contacts!',
+        description: 'Never forget your notes!',
         background_color: '#225ca3',
         theme_color: '#225ca3',
         start_url: './',
@@ -42,6 +47,7 @@ module.exports = () => {
         ],
       }),
     ],
+    //css loader and babel
     module: {
       rules: [
         {

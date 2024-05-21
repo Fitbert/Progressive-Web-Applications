@@ -32,13 +32,10 @@ const initializeEditor = () => {
 initializeEditor();
 
 // Check if service workers are supported
-if ('serviceWorker' in navigator) {
-  const wb = new Workbox('/src-sw.js');
-  wb.register().then((registration) => {
-    console.log('Service Worker registered with scope:', registration.scope);
-  }).catch((error) => {
-    console.error('Service Worker registration failed:', error);
-  });
+if ("serviceWorker" in navigator) {
+  // Registers workbox service worker
+  const workboxSW = new Workbox("/src-sw.js");
+  workboxSW.register();
 } else {
-  console.error('Service workers are not supported in this browser.');
+  console.error("Service workers are not supported in this browser.");
 }
