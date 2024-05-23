@@ -34,10 +34,17 @@ This application serves as a practical demonstration and opportunity to enhance 
 
 ## Live URL
 
-[https://jate-text-editor15-e077c2d0ee63.herokuapp.com/](https://jate-me.onrender.com)
+[JATE Render link](https://jate-me.onrender.com)
+[GitHub Repo link](https://github.com/Fitbert/Progressive-Web-Applications.git)
+
 
 ## Screenshots
 
+![Screenshot 1](img/Screenshot%202024-05-23%20141556.png)
+![Screenshot 2](img/Screenshot%202024-05-23%20141810.png)
+![Screenshot 3](img/Screenshot%202024-05-23%20141936.png)
+![Screenshot 4](img/Screenshot%202024-05-23%20141957.png)
+![Screenshot 5](img/Screenshot%202024-05-23%20142017.png)
 
 
 ## Technologies Used
@@ -46,11 +53,11 @@ This application is powered by Webpack (HTML-Webpack-Plugin, Babel, and CSS Load
 
 ## Installation
 
-Users can view and utilize the application through the use of the browser by visiting the deployed application at [text](https://jate-me.onrender.com)
+Users can view and utilize the application through the use of the browser by visiting the deployed application at [JATE App](https://jate-me.onrender.com)
 
 Viewing the application in the browser will also give users the ability to download the application allowing it to be used offline.
 
-To make any further additions, start by cloning the repo in the command line git clone [text](https://github.com/Fitbert/Progressive-Web-Applications.git), or forking the repo.
+To make any further additions, start by cloning the repo in the command line git clone [GitHub Repo link](https://github.com/Fitbert/Progressive-Web-Applications.git), or forking the repo.
 
 
 
@@ -60,7 +67,7 @@ Upon launching the application, any notes added to the site will be automaticall
 
 ## Usage Information
 
-This application is designed for intuitive usage. Simply visit the live URL ([text](https://jate-me.onrender.com)) and begin adding notes immediately! Users will notice an install button in the navigation bar, enabling them to download the application for offline use. Note-saving occurs automatically through the IndexedDB; the sole requirement is for the user to click outside the active window. This ensures that notes are persisted, whether the application is used online or offline.
+This application is designed for intuitive usage. Simply visit the live URL ([JATE APP](https://jate-me.onrender.com)) and begin adding notes immediately! Users will notice an install button in the navigation bar, enabling them to download the application for offline use. Note-saving occurs automatically through the IndexedDB; the sole requirement is for the user to click outside the active window. This ensures that notes are persisted, whether the application is used online or offline.
 
 
 ## Test Instructions
